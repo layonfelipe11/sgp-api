@@ -1,4 +1,4 @@
-package com.sgp.api.service.controller;
+package com.sgp.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

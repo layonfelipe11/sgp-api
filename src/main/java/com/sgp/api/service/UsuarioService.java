@@ -16,6 +16,9 @@ import com.sgp.api.repository.UsuarioRepository;
 @Service
 public class UsuarioService {
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+    
     public List<UsuarioDTO> carregarUsuariosCadastrados() {
         // TODO: Logica adicional (ex. calcular e retornar idade)
         List<Usuario> usuarios = usuarioRepository.findAll();
@@ -24,7 +27,6 @@ public class UsuarioService {
 
         for (Usuario usuario: usuarios){
            
-
             dtos.add(usuario.converterParaDto());
             
         }
@@ -51,7 +53,6 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    
     
 }

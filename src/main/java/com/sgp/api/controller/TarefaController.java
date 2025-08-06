@@ -1,4 +1,4 @@
-package com.sgp.api.service.controller;
+package com.sgp.api.controller;
 
 import java.util.List;
 import java.util.Optional;

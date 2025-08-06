@@ -1,4 +1,4 @@
-package com.sgp.api.service.controller;
+package com.sgp.api.controller;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,9 +20,14 @@ import com.sgp.api.dto.UsuarioDTO;
 import com.sgp.api.model.Usuario;
 import com.sgp.api.service.UsuarioService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> listarUsuarios() {
@@ -54,12 +59,12 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario){
+    public ResponseEntity<Usuario> cadastrarUsuario(@Valid @RequestBody Usuario usuario){
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.salvarUsuario(usuario));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable("id") Long id, @RequestBody Usuario dadosUsuario){
+    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable("id") Long id, @Valid @RequestBody Usuario dadosUsuario){
         UsuarioDTO usuario = usuarioService.obterDadosUsuarioPeloId(id);
 
         if (Objects.isNull(usuario)) {
@@ -71,7 +76,6 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuarioService.salvarUsuario(dadosUsuario));
     }
     
-    @Autowired
-    private UsuarioService usuarioService;
+    
 
 }
